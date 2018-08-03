@@ -302,14 +302,10 @@ Mixing example for a toolbar:
     box-shadow:0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
     
     .cordova :host & {padding-top: env(safe-area-inset-top)};
-    
-    ...
 }
 ```
 
-*
-[ ! ] Important Notes
-*
+##### [ ! ] Important Notes
 - Notice the the class `.cordova` goes with `:host` afterwards - otherwise the Mixin won't be propagated down into the relevant component.
 - Give the <body> and <html> a width and height of 100vw and 100vh so they will cover the whole screen.
 
