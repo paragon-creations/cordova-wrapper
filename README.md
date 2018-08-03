@@ -305,7 +305,7 @@ Mixing example for a toolbar:
 }
 ```
 
-##### [ ! ] Important Notes
+#### [ ! ] Important Notes
 - Notice the the class `.cordova` goes with `:host` afterwards - otherwise the Mixin won't be propagated down into the relevant component.
 - Give the <body> and <html> a width and height of 100vw and 100vh so they will cover the whole screen.
 
