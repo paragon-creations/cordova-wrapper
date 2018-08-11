@@ -359,3 +359,13 @@ if (config.api_url) wkWebView.injectCookie(config.api_url.replace(/https?:\/\//,
 It seems that WKWebView has issues using IndexedDB.
 So need to avoid it, and use either localStorage or WebSQL instead.
 For NeDB specifically, we need to set the memoryOnly flag to TRUE.
+
+## Tip for iOS when working with iFrames
+In order for the iFrame contents to scroll properly - make sure you give the iFrame container the following CSS attributes:
+```
+.iframe_container {
+    width:100%;height:100%;
+    -webkit-overflow-scrolling:touch;overflow-y:scroll; /* Mandatory in order for the iFrame content to scroll (instead of the parent window) */
+    iframe {width:100%;height:100%;border:0}
+}
+```
