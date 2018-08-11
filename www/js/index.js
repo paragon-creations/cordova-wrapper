@@ -12,7 +12,7 @@ function appLaunch(host, bundles) {
     bundles = bundles.replace(/^\//, '');
     
     // Run a timeout timer until application is started; if not started in time, prompt the user to either wait some more or force a reload.
-    appLaunch_timer = setTimeout(appLaunch_timeout, parseInt(config.bundles_timeout_in_seconds) >= 0 ? parseInt(config.bundles_timeout_in_seconds)*1000 : 15000);
+    appLaunch_timer_set();
     
     // Include the bundle and init the app if successful.
     try {
@@ -40,12 +40,10 @@ function appLaunch(host, bundles) {
             // Fail
             console.log('Failed $.get bundles.json');
             appLaunch_timeout();
-            clearTimeout(appLaunch_timer);
         });
     } catch (error) {
         console.log('Caught error downloading bundles.json');
         appLaunch_timeout();
-        clearTimeout(appLaunch_timer);
     }
 }
 
@@ -237,6 +235,10 @@ function getBundlePath(bundleURL, returnLocalFilesOnly) {
     }
 }
 
+function appLaunch_timer_set() {
+    appLaunch_timer = setTimeout(appLaunch_timeout, parseInt(config.bundles_timeout_in_seconds) >= 0 ? parseInt(config.bundles_timeout_in_seconds)*1000 : 15000);
+}
+
 // A recursive function that prompts the user to wait some more, refresh the page, or specify a new application host.
 function appLaunch_timeout() {
     clearTimeout(appLaunch_timer);
@@ -245,7 +247,7 @@ function appLaunch_timeout() {
             'Hmmm...'+"\n"+'Please check your Internet connection.',
             function (buttonIndex) {
                 if (buttonIndex == 1) {
-                    appLaunch_timer = setTimeout(appLaunch_timeout, config.timeout_in_seconds*1000);
+                    appLaunch_timer_set();
                 } else if (buttonIndex == 2) {
                     // Clearing the local storage
                     window.localStorage.setItem('localBundlesList', '');
