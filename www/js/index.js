@@ -2,6 +2,7 @@ var remoteBundlesList = {};
 var localBundlesList = populateLocalBundles();
 var injectedBundleIndex = 0;
 var updateBundles = true;
+var appAlreadyLoaded = false;
 
 console.log('Config: ', config);
 
@@ -236,6 +237,7 @@ function getBundlePath(bundleURL, returnLocalFilesOnly) {
 }
 
 function appLaunch_timer_set() {
+    if (appAlreadyLoaded) return; // If the Application has already been loaded successfully - we prevent the timer from being reset.
     appLaunch_timer = setTimeout(appLaunch_timeout, parseInt(config.bundles_timeout_in_seconds) >= 0 ? parseInt(config.bundles_timeout_in_seconds)*1000 : 15000);
 }
 
@@ -267,13 +269,11 @@ document.addEventListener('deviceready', function() {
     // https://github.com/CWBudde/cordova-plugin-wkwebview-inject-cookie
     if (config.api_url) wkWebView.injectCookie(config.api_url.replace(/https?:\/\//, '').replace(/\/$/, '') + '/');
     
-    if (parseInt(config.auto_hide_spalsh_in_seconds) >= 0) {
-        $('body').append('\
-            <div id="splash">\
-                '+(config.splash_logo_image_path ? '<img id="logo" src="'+(config.splash_logo_image_path)+'">' : '')+'\
-            </div>\
-        ');
-    }
+    $('body').append('\
+        <div id="splash">\
+            '+(config.splash_logo_image_path ? '<img id="logo" src="'+(config.splash_logo_image_path)+'">' : '')+'\
+        </div>\
+    ');
     
     if (config.html_app_container) {
         $('body').append(config.html_app_container);
