@@ -7,7 +7,7 @@ This way, updates to the frontend source-code (which do not require a new Cordov
 Your server will need to host the bundled frontend app, and a bundles.json file will tell the Cordova Wrapper which files to download.
 
 ## Example bundles.json file
-http://pnc.co.il/cordova-wrapper/bundles.json
+https://secure.pnc.co.il/pnc.co.il/dev/cordova-wrapper-example-app/dist/assets/config/bundles.json
 ```
 {
     "version": "1.0",
