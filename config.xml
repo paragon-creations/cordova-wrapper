@@ -3,7 +3,6 @@
     <name>App</name>
     <description>App</description>
     <author email="" href="" />
-    <content src="http://localhost:49000" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-navigation href="*://*/*" />
@@ -19,9 +18,11 @@
     <preference name="EnableViewportScale" value="false" />
     <preference name="AllowInlineMediaPlayback" value="true" />
     <platform name="android">
+        <content src="index.html" />
         <allow-intent href="market:*" />
     </platform>
     <platform name="ios">
+        <content src="http://localhost:49000" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
@@ -48,5 +49,6 @@
     <plugin name="spark-local-webserver" spec="^2.4.2" />
     <plugin name="cordova-plugin-keychain-touch-id-ios" spec="^3.2.2" />
     <plugin name="cordova-plugin-wkwebview-cookie-sync" spec="^1.1.4" />
-    <engine name="ios" spec="^4.5.5" />
+    <engine name="ios" spec="~5.0.0" />
+    <plugin name="cordova-plugin-cocoapod-support" spec="1.6.0" />
 </widget>

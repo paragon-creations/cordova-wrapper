@@ -1,13 +1,24 @@
 html {width:100vw;height:100vh;padding:0;margin:0;font-size:16px}
 body {width:100%;height:100%;padding:0;margin:0;background:#000;overflow:hidden}
 
-div#splash {
-    position:absolute;z-index:100000;top:0;left:0;width:100vw;height:100vh;
-    display:flex;flex-flow:row nowrap;justify-content:center;align-items:center;
-    background:#000;
+div#splash {position:absolute;z-index:100000;top:0;left:0;width:100vw;height:100vh;display:flex;flex-flow:column nowrap;justify-content:center;align-items:center;background:#000}
+div#splash > img {max-width:60vw;max-height:30vh;margin:0 0 2rem 0}
+div#splash.transition {transition:transform 0.4s 0s ease-in;transform:translateY(100%)}
+
+div#splash .loader {width:3rem;height:3rem}
+div#splash .loader .circular {position:relative;width:3rem;height:3rem;animation:cordova-splash-spinner-rotate 2s linear infinite}
+div#splash .loader .path {stroke-dasharray:1,200;stroke-dashoffset:0;animation:cordova-splash-spinner-dash 1.5s ease-in-out infinite,cordova-splash-spinner-color 6s ease-in-out infinite;stroke-linecap:round}
+@keyframes cordova-splash-spinner-rotate {
+  100% {transform:rotate(360deg)}
 }
-div#splash > img {max-width:60vw;max-height:30vh}
-div#splash.transition {
-    transition:transform 0.4s 0s ease-in;
-    transform:translateY(100%);
+@keyframes cordova-splash-spinner-dash {
+  0% {stroke-dasharray:1,200;stroke-dashoffset:0}
+  50% {stroke-dasharray:89,200;stroke-dashoffset:-35}
+  100% {stroke-dasharray:89,200;stroke-dashoffset:-124}
+}
+@keyframes cordova-splash-spinner-color {
+  100%, 0% {stroke:#FFF}
+  40% {stroke:#FFF}
+  66% {stroke:#FFF}
+  80%, 90% {stroke:#FFF}
 }

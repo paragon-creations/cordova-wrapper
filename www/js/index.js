@@ -267,11 +267,16 @@ function appLaunch_timeout() {
 document.addEventListener('deviceready', function() {
     // Adding support for cookies (due to a WebKit bug in iOS with WKWebView and cookies handling) 
     // https://github.com/CWBudde/cordova-plugin-wkwebview-inject-cookie
-    if (config.api_url) wkWebView.injectCookie(config.api_url.replace(/https?:\/\//, '').replace(/\/$/, '') + '/');
+    if (config.api_url && window['wkWebView']) wkWebView.injectCookie(config.api_url.replace(/https?:\/\//, '').replace(/\/$/, '') + '/');
     
     $('body').append('\
         <div id="splash">\
             '+(config.splash_logo_image_path ? '<img id="logo" src="'+(config.splash_logo_image_path)+'">' : '')+'\
+            <div class="loader">\
+                <svg class="circular" viewBox="25 25 50 50">\
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10" />\
+                </svg>\
+            </div>\
         </div>\
     ');
     
